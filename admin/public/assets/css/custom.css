@@ -1,0 +1,27 @@
+/* Table action column helpers */
+.table-action-cell {
+    min-width: 180px;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.table-actions form {
+    margin-bottom: 0;
+}
+
+.table-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.table-actions .btn i {
+    width: 16px;
+    height: 16px;
+}
+
