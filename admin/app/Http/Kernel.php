@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'permission' => \App\Http\Middleware\CheckPermission::class,
         'colony.context' => \App\Http\Middleware\SetColonyContext::class,
         'colony.access' => \App\Http\Middleware\CheckColonyAccess::class,
+        'ensure.colony' => \App\Http\Middleware\EnsureColonyAccess::class,
+        'resident.status' => \App\Http\Middleware\CheckResidentStatus::class,
     ];
 }

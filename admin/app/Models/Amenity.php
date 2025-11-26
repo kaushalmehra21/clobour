@@ -9,6 +9,29 @@ class Amenity extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'colony_id', 'is_active'];
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function colony()
+    {
+        return $this->belongsTo(Colony::class);
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Amenity extends Model
+{
+    use HasFactory;
+
     protected $fillable = [
         'colony_id',
         'name',

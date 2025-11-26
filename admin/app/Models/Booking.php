@@ -4,6 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+class Booking extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['amenity_id', 'resident_id', 'date', 'slot', 'status', 'purpose'];
+
+    public function amenity()
+    {
+        return $this->belongsTo(Amenity::class);
+    }
+
+    public function resident()
+    {
+        return $this->belongsTo(Resident::class);
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model

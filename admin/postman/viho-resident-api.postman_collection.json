@@ -1,0 +1,424 @@
+{
+  "info": {
+    "name": "Viho Resident API",
+    "_postman_id": "viho-resident-api",
+    "description": "Collection covering auth through billing for the Resident mobile API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"BL Meena\",\n  \"email\": \"blmeena@gmail.com\",\n  \"mobile\": \"9639639632\",\n  \"flat_id\": 1,\n  \"password\": \"password\",\n  \"password_confirmation\": \"password\",\n  \"colony_code\": \"CRYPTO\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "resident",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"blmeena@gmail.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/login",
+              "path": [
+                "api",
+                "resident",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobile\": \"9639639632\",\n  \"otp\": \"1234\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/verify-otp",
+              "path": [
+                "api",
+                "resident",
+                "verify-otp"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile & Flat",
+      "item": [
+        {
+          "name": "Show Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/profile",
+              "path": [
+                "api",
+                "resident",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"B L Meena Updated\",\n  \"phone\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/profile",
+              "path": [
+                "api",
+                "resident",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Flat Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/flat",
+              "path": [
+                "api",
+                "resident",
+                "flat"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Move Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"move_in\",\n  \"requested_on\": \"2025-12-01\",\n  \"notes\": \"Moving in new family members\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/flat/move-request",
+              "path": [
+                "api",
+                "resident",
+                "flat",
+                "move-request"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Family Members",
+      "item": [
+        {
+          "name": "List Members",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/family-members",
+              "path": [
+                "api",
+                "resident",
+                "family-members"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meena Daughter\",\n  \"relation\": \"daughter\",\n  \"gender\": \"female\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/family-members",
+              "path": [
+                "api",
+                "resident",
+                "family-members"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Staff & Vehicles",
+      "item": [
+        {
+          "name": "List Staff",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/staff",
+              "path": [
+                "api",
+                "resident",
+                "staff"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Register Staff",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Security Guard\",\n  \"type\": \"guard\",\n  \"phone\": \"9123456789\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/staff",
+              "path": [
+                "api",
+                "resident",
+                "staff"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/vehicles",
+              "path": [
+                "api",
+                "resident",
+                "vehicles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicle_number\": \"KA-01-XX-1234\",\n  \"vehicle_type\": \"Car\",\n  \"parking_slot_number\": \"P01\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/vehicles",
+              "path": [
+                "api",
+                "resident",
+                "vehicles"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "item": [
+        {
+          "name": "Current Dues",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/dues/current",
+              "path": [
+                "api",
+                "resident",
+                "dues",
+                "current"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bill History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/dues/history",
+              "path": [
+                "api",
+                "resident",
+                "dues",
+                "history"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Pay (Razorpay placeholder)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method\": \"razorpay\",\n  \"razorpay_order_id\": \"order_xyz\",\n  \"razorpay_payment_id\": \"pay_xyz\",\n  \"razorpay_signature\": \"sig_xyz\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resident/dues/{{billId}}/pay",
+              "path": [
+                "api",
+                "resident",
+                "dues",
+                "{{billId}}",
+                "pay"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+

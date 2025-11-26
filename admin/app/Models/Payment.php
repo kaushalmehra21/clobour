@@ -4,6 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+class Payment extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['bill_id', 'resident_id', 'amount', 'method', 'status', 'reference'];
+
+    public function bill()
+    {
+        return $this->belongsTo(Bill::class);
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model

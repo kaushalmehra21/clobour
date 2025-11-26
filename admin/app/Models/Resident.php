@@ -2,6 +2,62 @@
 
 namespace App\Models;
 
+use App\Models\FamilyMember;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Resident extends Authenticatable
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'mobile',
+        'password',
+        'colony_id',
+        'flat_id',
+        'status',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    public function colony()
+    {
+        return $this->belongsTo(Colony::class);
+    }
+
+    public function flat()
+    {
+        return $this->belongsTo(Flat::class);
+    }
+
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
+
+    public function visitors()
+    {
+        return $this->hasMany(Visitor::class);
+    }
+
+    public function familyMembers()
+    {
+        return $this->hasMany(FamilyMember::class);
+    }
+}
+<?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

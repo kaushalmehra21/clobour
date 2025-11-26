@@ -9,6 +9,24 @@ class Visitor extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['resident_id', 'name', 'phone', 'purpose', 'status', 'check_in', 'check_out', 'delivery_type'];
+
+    public function resident()
+    {
+        return $this->belongsTo(Resident::class);
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Visitor extends Model
+{
+    use HasFactory;
+
     protected $fillable = [
         'colony_id',
         'resident_id',
