@@ -56,7 +56,7 @@ class SettingsController extends Controller
 
         $settings->update($validated);
 
-        return redirect()->route('admin.settings.index')
+        return redirect(panel_route('settings.index'))
             ->with('success', 'Settings updated successfully.');
     }
 }

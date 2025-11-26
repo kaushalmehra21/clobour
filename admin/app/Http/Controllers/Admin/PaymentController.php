@@ -81,7 +81,7 @@ class PaymentController extends Controller
 
         $payment = $this->paymentService->recordPayment($validated);
 
-        return redirect()->route('admin.payments.index')
+        return redirect(panel_route('payments.index'))
             ->with('success', 'Payment recorded successfully.');
     }
 
@@ -94,7 +94,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return redirect()->route('admin.payments.index')
+        return redirect(panel_route('payments.index'))
             ->with('success', 'Payment deleted successfully.');
     }
 }

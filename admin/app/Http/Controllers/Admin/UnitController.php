@@ -73,7 +73,7 @@ class UnitController extends Controller
         
         $this->unitRepository->create($validated);
 
-        return redirect()->route('admin.units.index')
+        return redirect(panel_route('units.index'))
             ->with('success', 'Unit created successfully.');
     }
 
@@ -111,7 +111,7 @@ class UnitController extends Controller
 
         $this->unitRepository->update($unit->id, $validated);
 
-        return redirect()->route('admin.units.index')
+        return redirect(panel_route('units.index'))
             ->with('success', 'Unit updated successfully.');
     }
 
@@ -122,7 +122,7 @@ class UnitController extends Controller
     {
         $this->unitRepository->delete($unit->id);
 
-        return redirect()->route('admin.units.index')
+        return redirect(panel_route('units.index'))
             ->with('success', 'Unit deleted successfully.');
     }
 

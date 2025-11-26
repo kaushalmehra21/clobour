@@ -70,7 +70,7 @@ class NoticeController extends Controller
 
         Notice::create($validated);
 
-        return redirect()->route('admin.notices.index')
+        return redirect(panel_route('notices.index'))
             ->with('success', 'Notice created successfully.');
     }
 
@@ -121,7 +121,7 @@ class NoticeController extends Controller
 
         $notice->update($validated);
 
-        return redirect()->route('admin.notices.index')
+        return redirect(panel_route('notices.index'))
             ->with('success', 'Notice updated successfully.');
     }
 
@@ -134,7 +134,7 @@ class NoticeController extends Controller
         }
         $notice->delete();
 
-        return redirect()->route('admin.notices.index')
+        return redirect(panel_route('notices.index'))
             ->with('success', 'Notice deleted successfully.');
     }
 }

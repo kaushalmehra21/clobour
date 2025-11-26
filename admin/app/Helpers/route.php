@@ -31,10 +31,22 @@ if (! function_exists('panel_route')) {
         $prefix = 'admin';
 
         if ($route) {
-            if ($route->named('colony.*')) {
+            $routeName = $route->getName();
+            $routePrefix = $route->getPrefix();
+            
+            // Check route name pattern first
+            if ($routeName && (str_starts_with($routeName, 'colony.') || str_contains($routeName, 'colony.'))) {
                 $prefix = 'colony';
-            } elseif ($route->named('super-admin.*')) {
+            } elseif ($routeName && (str_starts_with($routeName, 'super-admin.') || str_contains($routeName, 'super-admin.'))) {
                 $prefix = 'super-admin';
+            }
+            // Fallback to prefix check
+            elseif ($routePrefix) {
+                if (str_contains($routePrefix, 'colony')) {
+                    $prefix = 'colony';
+                } elseif (str_contains($routePrefix, 'super-admin')) {
+                    $prefix = 'super-admin';
+                }
             }
         }
 

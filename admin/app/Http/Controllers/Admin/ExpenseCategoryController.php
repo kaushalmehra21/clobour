@@ -28,19 +28,21 @@ class ExpenseCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $colonyId = auth()->user()->current_colony_id;
+        
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:expense_categories,name',
+            'name' => 'required|string|max:255|unique:expense_categories,name,NULL,id,colony_id,' . $colonyId,
             'description' => 'nullable|string',
             'is_active' => 'boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
         $validated['is_active'] = $request->has('is_active');
-        $validated['colony_id'] = auth()->user()->current_colony_id;
+        $validated['colony_id'] = $colonyId;
 
         ExpenseCategory::create($validated);
 
-        return redirect()->route('admin.expense-categories.index')
+        return redirect(panel_route('expense-categories.index'))
             ->with('success', 'Expense category created successfully.');
     }
 
@@ -51,8 +53,10 @@ class ExpenseCategoryController extends Controller
 
     public function update(Request $request, ExpenseCategory $expenseCategory)
     {
+        $colonyId = auth()->user()->current_colony_id;
+        
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:expense_categories,name,' . $expenseCategory->id,
+            'name' => 'required|string|max:255|unique:expense_categories,name,' . $expenseCategory->id . ',id,colony_id,' . $colonyId,
             'description' => 'nullable|string',
             'is_active' => 'boolean',
         ]);
@@ -62,14 +66,14 @@ class ExpenseCategoryController extends Controller
 
         $expenseCategory->update($validated);
 
-        return redirect()->route('admin.expense-categories.index')
+        return redirect(panel_route('expense-categories.index'))
             ->with('success', 'Expense category updated successfully.');
     }
 
     public function destroy(ExpenseCategory $expenseCategory)
     {
         $expenseCategory->delete();
-        return redirect()->route('admin.expense-categories.index')
+        return redirect(panel_route('expense-categories.index'))
             ->with('success', 'Expense category deleted successfully.');
     }
 }

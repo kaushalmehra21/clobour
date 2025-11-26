@@ -104,7 +104,7 @@ class ComplaintController extends Controller
     public function destroy(Complaint $complaint)
     {
         $complaint->delete();
-        return redirect()->route('admin.complaints.index')
+        return redirect(panel_route('complaints.index'))
             ->with('success', 'Complaint deleted successfully.');
     }
 }

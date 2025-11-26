@@ -43,7 +43,7 @@ class ChargeController extends Controller
 
         Charge::create($validated);
 
-        return redirect()->route('admin.charges.index')
+        return redirect(panel_route('charges.index'))
             ->with('success', 'Charge created successfully.');
     }
 
@@ -68,14 +68,14 @@ class ChargeController extends Controller
 
         $charge->update($validated);
 
-        return redirect()->route('admin.charges.index')
+        return redirect(panel_route('charges.index'))
             ->with('success', 'Charge updated successfully.');
     }
 
     public function destroy(Charge $charge)
     {
         $charge->delete();
-        return redirect()->route('admin.charges.index')
+        return redirect(panel_route('charges.index'))
             ->with('success', 'Charge deleted successfully.');
     }
 }

@@ -69,7 +69,7 @@ class VehicleController extends Controller
 
         Vehicle::create($validated);
 
-        return redirect()->route('admin.vehicles.index')
+        return redirect(panel_route('vehicles.index'))
             ->with('success', 'Vehicle registered successfully.');
     }
 
@@ -106,14 +106,14 @@ class VehicleController extends Controller
 
         $vehicle->update($validated);
 
-        return redirect()->route('admin.vehicles.index')
+        return redirect(panel_route('vehicles.index'))
             ->with('success', 'Vehicle updated successfully.');
     }
 
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
-        return redirect()->route('admin.vehicles.index')
+        return redirect(panel_route('vehicles.index'))
             ->with('success', 'Vehicle deleted successfully.');
     }
 }

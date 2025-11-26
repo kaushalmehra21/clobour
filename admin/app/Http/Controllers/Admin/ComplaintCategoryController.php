@@ -28,19 +28,21 @@ class ComplaintCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $colonyId = auth()->user()->current_colony_id;
+        
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:complaint_categories,name',
+            'name' => 'required|string|max:255|unique:complaint_categories,name,NULL,id,colony_id,' . $colonyId,
             'description' => 'nullable|string',
             'is_active' => 'boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
         $validated['is_active'] = $request->has('is_active');
-        $validated['colony_id'] = auth()->user()->current_colony_id;
+        $validated['colony_id'] = $colonyId;
 
         ComplaintCategory::create($validated);
 
-        return redirect()->route('admin.complaint-categories.index')
+        return redirect(panel_route('complaint-categories.index'))
             ->with('success', 'Complaint category created successfully.');
     }
 
@@ -51,8 +53,10 @@ class ComplaintCategoryController extends Controller
 
     public function update(Request $request, ComplaintCategory $complaintCategory)
     {
+        $colonyId = auth()->user()->current_colony_id;
+        
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:complaint_categories,name,' . $complaintCategory->id,
+            'name' => 'required|string|max:255|unique:complaint_categories,name,' . $complaintCategory->id . ',id,colony_id,' . $colonyId,
             'description' => 'nullable|string',
             'is_active' => 'boolean',
         ]);
@@ -62,14 +66,14 @@ class ComplaintCategoryController extends Controller
 
         $complaintCategory->update($validated);
 
-        return redirect()->route('admin.complaint-categories.index')
+        return redirect(panel_route('complaint-categories.index'))
             ->with('success', 'Complaint category updated successfully.');
     }
 
     public function destroy(ComplaintCategory $complaintCategory)
     {
         $complaintCategory->delete();
-        return redirect()->route('admin.complaint-categories.index')
+        return redirect(panel_route('complaint-categories.index'))
             ->with('success', 'Complaint category deleted successfully.');
     }
 }

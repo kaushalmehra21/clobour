@@ -66,7 +66,7 @@ class BillingController extends Controller
     public function destroy(MonthlyBill $billing)
     {
         $billing->delete();
-        return redirect()->route('admin.billing.index')
+        return redirect(panel_route('billing.index'))
             ->with('success', 'Bill deleted successfully.');
     }
 }

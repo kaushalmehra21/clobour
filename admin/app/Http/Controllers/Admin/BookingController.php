@@ -90,7 +90,7 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         $booking->delete();
-        return redirect()->route('admin.bookings.index')
+        return redirect(panel_route('bookings.index'))
             ->with('success', 'Booking deleted successfully.');
     }
 }

@@ -99,7 +99,7 @@ class ResidentController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.residents.index')
+        return redirect(panel_route('residents.index'))
             ->with('success', 'Resident created successfully.');
     }
 
@@ -158,7 +158,7 @@ class ResidentController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.residents.index')
+        return redirect(panel_route('residents.index'))
             ->with('success', 'Resident updated successfully.');
     }
 
@@ -169,7 +169,7 @@ class ResidentController extends Controller
     {
         $this->residentRepository->delete($resident->id);
 
-        return redirect()->route('admin.residents.index')
+        return redirect(panel_route('residents.index'))
             ->with('success', 'Resident deleted successfully.');
     }
 }

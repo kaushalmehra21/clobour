@@ -50,7 +50,7 @@ class AmenityController extends Controller
 
         Amenity::create($validated);
 
-        return redirect()->route('admin.amenities.index')
+        return redirect(panel_route('amenities.index'))
             ->with('success', 'Amenity created successfully.');
     }
 
@@ -88,14 +88,14 @@ class AmenityController extends Controller
 
         $amenity->update($validated);
 
-        return redirect()->route('admin.amenities.index')
+        return redirect(panel_route('amenities.index'))
             ->with('success', 'Amenity updated successfully.');
     }
 
     public function destroy(Amenity $amenity)
     {
         $amenity->delete();
-        return redirect()->route('admin.amenities.index')
+        return redirect(panel_route('amenities.index'))
             ->with('success', 'Amenity deleted successfully.');
     }
 }

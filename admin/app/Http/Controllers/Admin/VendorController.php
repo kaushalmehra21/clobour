@@ -58,7 +58,7 @@ class VendorController extends Controller
 
         Vendor::create($validated);
 
-        return redirect()->route('admin.vendors.index')
+        return redirect(panel_route('vendors.index'))
             ->with('success', 'Vendor created successfully.');
     }
 
@@ -92,14 +92,14 @@ class VendorController extends Controller
 
         $vendor->update($validated);
 
-        return redirect()->route('admin.vendors.index')
+        return redirect(panel_route('vendors.index'))
             ->with('success', 'Vendor updated successfully.');
     }
 
     public function destroy(Vendor $vendor)
     {
         $vendor->delete();
-        return redirect()->route('admin.vendors.index')
+        return redirect(panel_route('vendors.index'))
             ->with('success', 'Vendor deleted successfully.');
     }
 }

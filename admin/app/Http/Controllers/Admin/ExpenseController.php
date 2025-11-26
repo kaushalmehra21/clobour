@@ -94,7 +94,7 @@ class ExpenseController extends Controller
 
         Expense::create($validated);
 
-        return redirect()->route('admin.expenses.index')
+        return redirect(panel_route('expenses.index'))
             ->with('success', 'Expense created successfully.');
     }
 
@@ -141,7 +141,7 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->route('admin.expenses.index')
+        return redirect(panel_route('expenses.index'))
             ->with('success', 'Expense updated successfully.');
     }
 
@@ -152,7 +152,7 @@ class ExpenseController extends Controller
         }
         $expense->delete();
 
-        return redirect()->route('admin.expenses.index')
+        return redirect(panel_route('expenses.index'))
             ->with('success', 'Expense deleted successfully.');
     }
 }
